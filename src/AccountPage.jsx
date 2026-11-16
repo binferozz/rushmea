@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { createCustomer, verifyCustomerPassword } from "./auth.js";
 import { money, orderTotal, persistStore, useStore } from "./store.js";
+import { sitePath } from "./sitePath.js";
 
 function AccountFrame({ children, eyebrow, title, copy }) {
   return (
@@ -71,7 +72,7 @@ function AccountForm({ mode }) {
         persistStore(updatedStore);
         setStore(updatedStore);
       }
-      window.location.href = "/account";
+      window.location.href = sitePath("/account");
     } catch (failure) {
       setError(`We couldn’t finish setting up your account. ${failure.message}`);
     } finally {
@@ -99,7 +100,7 @@ function AccountForm({ mode }) {
         <button className="button button-dark account-submit" disabled={busy}>
           {busy ? "One moment…" : registering ? <>Create account <ArrowRight size={16} /></> : <>Sign in <ArrowRight size={16} /></>}
         </button>
-        <p className="account-switch">{registering ? "Already have an account?" : "New to RUSHMEA?"} <a href={registering ? "/account/login" : "/account/register"}>{registering ? "Sign in" : "Create an account"}</a></p>
+        <p className="account-switch">{registering ? "Already have an account?" : "New to RUSHMEA?"} <a href={sitePath(registering ? "/account/login" : "/account/register")}>{registering ? "Sign in" : "Create an account"}</a></p>
         <p className="account-privacy"><LockKeyhole size={13} /> Your password is stored as a salted hash in this browser.</p>
       </form>
     </AccountFrame>
@@ -115,7 +116,7 @@ function CustomerDashboard({ customer }) {
     const updatedStore = { ...store, currentCustomerId: null };
     persistStore(updatedStore);
     setStore(updatedStore);
-    window.location.href = "/";
+    window.location.href = sitePath("/");
   };
 
   return (
@@ -141,9 +142,9 @@ function CustomerDashboard({ customer }) {
               <div className="account-order-icon"><Package size={18} /></div>
               <div className="account-order-info"><strong>{order.id}</strong><span>{new Date(order.createdAt).toLocaleDateString("en-KE", { dateStyle: "medium" })} · {order.items.length} {order.items.length === 1 ? "item" : "items"}</span></div>
               <div className="account-order-total"><strong>{money(orderTotal(order))}</strong><span className={order.paymentStatus === "approved" ? "account-paid" : ""}>{order.paymentStatus === "approved" ? "Paid" : "Payment pending"}</span></div>
-              <a className="account-order-link" href={`/track?order=${encodeURIComponent(order.id)}`}>Track <ArrowUpRight size={14} /></a>
+              <a className="account-order-link" href={sitePath(`/track?order=${encodeURIComponent(order.id)}`)}>Track <ArrowUpRight size={14} /></a>
             </article>
-          )) : <div className="account-empty-orders"><Package size={23} /><p>Your RUSHMEA orders will appear here.</p><a className="text-link" href="/shop">Explore the collection <ArrowRight size={15} /></a></div>}
+          )) : <div className="account-empty-orders"><Package size={23} /><p>Your RUSHMEA orders will appear here.</p><a className="text-link" href={sitePath("/shop")}>Explore the collection <ArrowRight size={15} /></a></div>}
         </section>
         <div className="account-help"><CircleHelp size={17} /><span>Need help with an order? Keep your quote number handy when contacting RUSHMEA.</span></div>
       </div>

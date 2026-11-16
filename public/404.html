@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      const requestedPath =
+        window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(
+        "/rushmea/?p=" + encodeURIComponent(requestedPath),
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

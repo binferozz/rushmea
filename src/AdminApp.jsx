@@ -8,6 +8,7 @@ import {
   verifyAdminPassword,
 } from "./auth.js";
 import { StoreProvider } from "./store.js";
+import { sitePath } from "./sitePath.js";
 import "./styles.css";
 
 const SESSION_KEY = "rushmea-admin-session";
@@ -59,7 +60,7 @@ function AdminAccess({ onAuthenticated }) {
   return (
     <main className="admin-access-page">
       <section className="admin-access-card">
-        <img className="admin-access-logo" src="/rushmea-logo.png" alt="RUSHMEA — What your hair craves" />
+        <img className="admin-access-logo" src={`${import.meta.env.BASE_URL}rushmea-logo.png`} alt="RUSHMEA — What your hair craves" />
         <span className="eyebrow">PRIVATE STORE MANAGEMENT</span>
         <h1>{credential ? <>Welcome <em>back.</em></> : <>Secure your <em>admin access.</em></>}</h1>
         <p>{credential ? "Sign in to manage products, orders, stock, and customer offers." : "Create the administrator password for this browser. Use at least 12 characters and keep it private."}</p>
@@ -71,7 +72,7 @@ function AdminAccess({ onAuthenticated }) {
           <button className="button button-dark" disabled={busy}>{busy ? "Please wait…" : credential ? "Sign in" : "Set password"} <ArrowRight size={16} /></button>
         </form>
         <div className="admin-access-footnote"><LockKeyhole size={15} /><span>Administrator: {ADMIN_USERNAME}</span></div>
-        <a className="admin-access-back" href="/">Return to the RUSHMEA storefront</a>
+        <a className="admin-access-back" href={sitePath("/")}>Return to the RUSHMEA storefront</a>
       </section>
     </main>
   );

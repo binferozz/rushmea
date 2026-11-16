@@ -17,7 +17,11 @@ The storefront is served by Vite. The separate administrator page is `Rushadmin.
 
 ## GitHub Desktop
 
-The project is prepared as a local Git repository connected to the private `binferozz/rushmea` repository. Open this folder in GitHub Desktop, review the changes, enter a commit summary, commit, then select **Push origin** to upload them. Future changes also need to be reviewed, committed, and pushed in GitHub Desktop; saving a file does not automatically publish it. Generated files, dependencies, local environment files, and local databases are excluded.
+The project is prepared as a local Git repository connected to the `binferozz/rushmea` repository. Open this folder in GitHub Desktop, review the changes, enter a commit summary, commit, then select **Push origin** to upload them. Future changes also need to be reviewed, committed, and pushed in GitHub Desktop; saving a file does not automatically publish it. Generated files, dependencies, local environment files, and local databases are excluded.
+
+## Publish on GitHub Pages
+
+The GitHub Actions workflow at `.github/workflows/deploy.yml` builds the Vite site and deploys the `dist` folder when changes are pushed to `main`. In the repository's **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**. The project site is available at `https://binferozz.github.io/rushmea/` after the workflow completes successfully.
 
 ## Store capabilities
 

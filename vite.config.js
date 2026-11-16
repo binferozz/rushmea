@@ -5,7 +5,8 @@ import react from "@vitejs/plugin-react";
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/rushmea/" : "/",
   plugins: [react()],
   build: {
     rollupOptions: {
@@ -15,4 +16,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

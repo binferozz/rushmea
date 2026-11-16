@@ -15,6 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      const requestedPath = new URLSearchParams(window.location.search).get("p");
+      if (requestedPath && requestedPath.startsWith("/rushmea/")) {
+        window.history.replaceState(null, "", requestedPath);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
