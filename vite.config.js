@@ -9,6 +9,7 @@ export default defineConfig(({ command }) => ({
   base: command === "build" ? "/rushmea/" : "/",
   plugins: [react()],
   build: {
+    outDir: "dist",
     rollupOptions: {
       input: {
         storefront: resolve(projectRoot, "index.html"),
